@@ -32,16 +32,16 @@ public class AccountsController : BaseController
     }
 
     [HttpPut("current")]
-    public IActionResult UpdateCurrent(UpdateRequest model)
+    public async Task<IActionResult> UpdateCurrent(UpdateRequest model)
     {
-        var account = _accountService.Update(Account!.Id, model);
+        var account = await _accountService.Update(Account!.Id, model);
         return Ok(account);
     }
 
     [HttpDelete("current")]
-    public IActionResult DeleteCurrent()
+    public async Task<IActionResult> DeleteCurrent()
     {
-        _accountService.Delete(Account!.Id);
+        await _accountService.Delete(Account!.Id);
         return Ok();
     }
 }
